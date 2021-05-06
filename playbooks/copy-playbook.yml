@@ -1,4 +1,4 @@
 - name: Copy empty file to /tmp
   copy:
-    src: /home/vagrant/examen/admin.txt
+    src: ../admin.txt
     dest: /tmp/{{user}}.txt
