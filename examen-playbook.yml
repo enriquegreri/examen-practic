@@ -1,4 +1,4 @@
-- hosts: devservers,webservers
+- hosts: webservers, devservers
   become: yes
   become_user: root
   tasks:
@@ -12,11 +12,10 @@
         group: user
         home: /users/{{user}}
         create_home: yes
-- hosts: webservers
-  become: yes
-  become_user: root
-  roles:
-    - update
+    - name: Roles
+      include_role:
+        name: update
+      when: inventory_hostname in groups['webservers']
 - hosts: devservers,webservers
   tasks: 
     - include: playbooks/copy-playbook.yml
