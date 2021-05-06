@@ -1,4 +1,0 @@
-- name: Copy empty file to /tmp
-  copy:
-    src: ../admin.txt
-    dest: /tmp/{{user}}.txt
