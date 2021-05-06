@@ -18,4 +18,4 @@
       when: inventory_hostname in groups['webservers']
 - hosts: devservers,webservers
   tasks: 
-    - include: playbooks/copy-playbook.yml
+    - include: includes/copy-playbook.yml
