@@ -1,0 +1,22 @@
+- hosts: devservers,webservers
+  become: yes
+  become_user: root
+  tasks:
+    - name: Create group
+      group:
+        name: user
+    - name: Create User
+      user:
+        name: "{{ user }}"
+        password: $6$vKVD5hgMjLalVYDC$Xx26FDK01VfEeBnBH45JdEgU5y1e.OlU8l694C31fO9S4B3BMZwCFO0S4.Y5uyzm0kGQhMafcyMqDHNwv3ehg1
+        group: user
+        home: /users/{{user}}
+        create_home: yes
+- hosts: webservers
+  become: yes
+  become_user: root
+  roles:
+    - update
+- hosts: devservers,webservers
+  tasks: 
+    - include: playbooks/copy-playbook.yml
